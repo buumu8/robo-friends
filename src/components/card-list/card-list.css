@@ -1,0 +1,12 @@
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: min-content;
+  gap: 0.5rem;
+}
+
+@media screen and (max-width: 450px) {
+  .card-list {
+    justify-items: center;
+  }
+}

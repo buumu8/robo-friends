@@ -1,0 +1,39 @@
+nav {
+  background-color: darkblue;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+nav h1 {
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+nav h1::after {
+  content: "beta";
+  background-color: white;
+  padding: 0.3rem;
+  font-size: 0.5rem;
+  color: darkblue;
+  border-radius: 0.5rem;
+  margin-left: 0.3rem;
+  margin-top: -0.5rem;
+  position: absolute;
+}
+
+@media screen and (max-width: 450px) {
+  nav {
+    flex-direction: column;
+  }
+}

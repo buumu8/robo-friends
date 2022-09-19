@@ -1,0 +1,37 @@
+form {
+  border: none;
+}
+
+fieldset {
+  border: none;
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-box {
+  border: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-right: 0.5rem;
+}
+
+.search-box::placeholder {
+  color: darkblue;
+}
+
+.search-box:focus {
+  outline: none;
+}
+
+.search_icon {
+  width: 15px;
+  height: 15px;
+}
+
+.search_icon path {
+  fill: white;
+}

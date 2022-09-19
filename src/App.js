@@ -2,6 +2,7 @@ import axios from "axios";
 import { Component } from "react";
 import "./App.css";
 import CardList from "./components/card-list/card-list";
+import ErrorBoundary from "./components/error-boundary/error-boundary";
 import NavBar from "./components/nav-bar/nav-bar";
 // import { robots } from "./utils/robots";
 
@@ -41,7 +42,9 @@ class App extends Component {
       <div className="App">
         <NavBar searchChange={this.onSearchChange} />
         <main>
-          <CardList robots={filteredRobots} />
+          <ErrorBoundary>
+            <CardList robots={filteredRobots} />
+          </ErrorBoundary>
         </main>
       </div>
     );

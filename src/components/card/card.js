@@ -1,7 +1,7 @@
 import React from "react";
 import "./card.css";
 
-export default function Card({ robot }) {
+const Card = React.memo(({ robot }) => {
   return (
     <section className="card">
       <figure>
@@ -11,4 +11,6 @@ export default function Card({ robot }) {
       <p>{robot.email}</p>
     </section>
   );
-}
+});
+
+export default Card;

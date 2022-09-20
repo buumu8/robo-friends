@@ -1,54 +1,42 @@
-import axios from "axios";
-import { Component } from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import "./App.css";
 import CardList from "./components/card-list/card-list";
 import ErrorBoundary from "./components/error-boundary/error-boundary";
 import NavBar from "./components/nav-bar/nav-bar";
-// import { robots } from "./utils/robots";
+import { setSearchField, requestRobots } from "./actions";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      robots: [],
-      searchField: "",
-    };
-  }
+function App(props) {
+  const { searchField = "", setSearchField, robots, setRobots, loading } = props;
 
-  componentDidMount = async () => {
-    try {
-      const response = await axios.get("https://jsonplaceholder.typicode.com/users");
-      const data = response.data;
-      this.setState({
-        robots: data,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  useEffect(() => {
+    setRobots();
+  }, []);
 
-  onSearchChange = (event) => {
-    this.setState({
-      searchField: event.target.value,
-    });
-  };
+  const filteredRobots = robots.filter((robot) =>
+    robot.name.toLowerCase().includes(searchField.toLowerCase())
+  );
 
-  render() {
-    const { robots, searchField } = this.state;
-    const filteredRobots = robots.filter((robot) =>
-      robot.name.toLowerCase().includes(searchField.toLowerCase())
-    );
-    return (
-      <div className="App">
-        <NavBar searchChange={this.onSearchChange} />
-        <main>
-          <ErrorBoundary>
-            <CardList robots={filteredRobots} />
-          </ErrorBoundary>
-        </main>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <NavBar searchChange={(event) => setSearchField(event.target.value)} />
+      <main>
+        <ErrorBoundary>
+          <CardList robots={filteredRobots} loading={loading} />
+        </ErrorBoundary>
+      </main>
+    </div>
+  );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  searchField: state.search.searchField,
+  robots: state.robots.robots,
+  loading: state.robots.isPending,
+});
+const mapDispatchToProps = (dispatch) => ({
+  setSearchField: (event) => dispatch(setSearchField(event)),
+  setRobots: () => dispatch(requestRobots()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

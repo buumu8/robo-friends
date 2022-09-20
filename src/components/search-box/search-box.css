@@ -35,3 +35,19 @@ fieldset {
 .search_icon path {
   fill: white;
 }
+
+@media screen and (max-width: 450px) {
+  form {
+    width: 100%;
+    margin-top: -5px;
+  }
+
+  fieldset {
+    margin: 0;
+    padding: 0 0 0.5rem 0;
+  }
+
+  input {
+    text-align: center;
+  }
+}

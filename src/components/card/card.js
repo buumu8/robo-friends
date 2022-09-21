@@ -5,7 +5,7 @@ const Card = React.memo(({ robot }) => {
   return (
     <section className="card">
       <figure>
-        <img src={`https://robohash.org/${robot.id}?200x200`} alt="robot"></img>
+        <img src={`https://robohash.org/${robot.id}?size=200x200`} alt="robot"></img>
       </figure>
       <h2>{robot.name}</h2>
       <p>{robot.email}</p>

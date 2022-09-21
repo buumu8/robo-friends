@@ -49,5 +49,6 @@ fieldset {
 
   input {
     text-align: center;
+    width: 100%;
   }
 }
